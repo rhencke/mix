@@ -28,6 +28,39 @@ const (
 	GREATER
 )
 
+// The Computer is a MIX computer.
+type Computer struct {
+	// Accumulator register
+	A Word
+
+	// Extension register
+	X Word
+
+	// Index registers
+	I1, I2, I3, I4, I5, I6 Address
+
+	// Jump register
+	J JumpAddress
+
+	// Overflow toggle
+	Overflow bool
+
+	// Comparison indicator
+	Comparison Comparison
+
+	// Memory cells
+	Memory [4000]Word
+
+	// Input/output devices
+	Tape        [8]io.ReadWriteSeeker
+	Disk        [8]io.ReadWriteSeeker
+	CardReader  io.Reader
+	CardPunch   io.Writer
+	LinePrinter io.Writer
+	Typewriter  io.Reader
+	PaperTape   io.ReadWriteSeeker
+}
+
 func (b Byte) String() string {
 	if b > 99 || b < 0 {
 		return "??"
