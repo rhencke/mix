@@ -9,14 +9,23 @@ func TestByteString(t *testing.T) {
 		value    Byte
 		expected string
 	}{
+		{-1, "??"},
 		{0, "00"},
 		{99, "99"},
 		{100, "??"},
 	}
 
 	for i, v := range tests {
-		if v.value.String() != v.expected {
-			t.Errorf("test #%v, expected %v, got %v", i, v.expected, v.value.String())
+		actual := v.value.String()
+		if actual != v.expected {
+			t.Errorf("test #%v, expected %v, got %v", i, v.expected, actual)
 		}
+	}
+}
+
+func TestNilByteString(t *testing.T) {
+	actual := (*Byte)(nil).String()
+	if actual != "??" {
+		t.Error("expected ??, got", actual)
 	}
 }
