@@ -2,7 +2,11 @@ package mix
 
 import (
 	"fmt"
+	"io"
 )
+
+// The 56 characters of the MIX character set, indexed by its character code.
+const CharacterCodes = " ABCDEFGHIΔJKLMNOPQRΣΠSTUVWXYZ0123456789.,()+-*/=$<>@;:'"
 
 // A Byte represents one of 100 distinct values, on this particular MIX computer.
 type Byte int8
