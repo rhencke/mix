@@ -23,6 +23,10 @@ func TestStrings(t *testing.T) {
 		10: {Address{-1, 23, 45}, "- 23 45"},
 		11: {JumpAddress{0, 0}, "00 00"},
 		12: {JumpAddress{23, 45}, "23 45"},
+		13: {LESS, "LESS"},
+		14: {EQUAL, "EQUAL"},
+		15: {GREATER, "GREATER"},
+		16: {Comparison(255), "??"},
 	}
 
 	for i, v := range tests {

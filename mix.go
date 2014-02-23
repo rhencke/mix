@@ -19,6 +19,15 @@ type Address [3]Byte
 // A JumpAddress is [Byte, Byte]
 type JumpAddress [2]Byte
 
+// The Comparison indicator is one of: LESS, EQUAL, GREATER
+type Comparison byte
+
+const (
+	LESS Comparison = iota
+	EQUAL
+	GREATER
+)
+
 func (b Byte) String() string {
 	if b > 99 || b < 0 {
 		return "??"
@@ -43,4 +52,17 @@ func (a Address) String() string {
 
 func (j JumpAddress) String() string {
 	return fmt.Sprint(j[0], j[1])
+}
+
+func (c Comparison) String() string {
+	switch c {
+	case LESS:
+		return "LESS"
+	case EQUAL:
+		return "EQUAL"
+	case GREATER:
+		return "GREATER"
+	default:
+		return "??"
+	}
 }
