@@ -36,3 +36,23 @@ func TestStrings(t *testing.T) {
 		}
 	}
 }
+
+func TestCFIAA(t *testing.T) {
+	w := Word{-1, 2, 3, 4, 5, 6}
+
+	var expectedA = Address{-1, 2, 3}
+	if a := w.AA(); a != expectedA {
+		t.Errorf("expected address - 02 03, got %v", a)
+	}
+
+	if i := w.I(); i != 4 {
+		t.Errorf("expected index register 04, got %v", i)
+	}
+	if f := w.F(); f != 5 {
+		t.Errorf("expected field value 05, got %v", f)
+	}
+
+	if c := w.C(); c != 6 {
+		t.Errorf("expected operation code 06, got %v", c)
+	}
+}

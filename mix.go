@@ -63,6 +63,16 @@ type Computer struct {
 	LinePrinter io.Writer
 	Typewriter  io.Reader
 	PaperTape   io.ReadWriteSeeker
+
+	// The address of the current instruction, or ⊛
+	LocationCounter int
+}
+
+func (c *Computer) Step() {
+	mem := c.Memory[c.LocationCounter]
+	switch mem.C() {
+
+	}
 }
 
 func (b Byte) String() string {
@@ -77,6 +87,26 @@ func (s Sign) String() string {
 		return "-"
 	}
 	return "+"
+}
+
+// C is the operation code of this word.
+func (w Word) C() Byte {
+	return w[5]
+}
+
+// F is the modification of the operation code of this word.
+func (w Word) F() Byte {
+	return w[4]
+}
+
+// I is the index register to be used, or 0 if none.
+func (w Word) I() Byte {
+	return w[3]
+}
+
+// AA is the address of this word.
+func (w Word) AA() Address {
+	return Address{w[0], w[1], w[2]}
 }
 
 func (w Word) String() string {
